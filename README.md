@@ -24,5 +24,5 @@ dw 0xaa55
 $ nasm -f bin boot_sector.asm -o boot_sector.bin
 $ qemu-system-x86_64 ./boot_sector.bin 
 ```
-
+<img src="qemu_boot.png" width="700" height="400">
 
