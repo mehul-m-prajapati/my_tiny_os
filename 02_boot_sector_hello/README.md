@@ -1,4 +1,4 @@
-### Print hello on tty
+## Print hello on tty
 
 Improve a bit on our infinite-loop boot sector and print
 something on the screen. We will raise an interrupt for this.
@@ -39,3 +39,8 @@ times 510 - ($-$$) db 0
 dw 0xaa55 
 ```
 
+### Run
+```
+$ nasm -f bin hello_boot.asm -o hello_boot.bin
+$ qemu-system-x86_64 hello_boot.bin
+```
