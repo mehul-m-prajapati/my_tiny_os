@@ -21,13 +21,13 @@ Welcome to **Tiny OS**, a lightweight operating system designed for learning and
 ### Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/mehul-m-prajapati/my_tiny_os
-   cd my_tiny_os
-   ```
+```bash
+git clone https://github.com/mehul-m-prajapati/my_tiny_os
+cd my_tiny_os
+```
 
 ### Contributing
 Contributions are welcome! Please fork the repository and submit a pull request for any improvements or features.
 
 ### Acknowledgments
-- (OS Tutorial)[https://github.com/cfenollosa/os-tutorial/]
+- [os tut](https://github.com/cfenollosa/os-tutorial/)
