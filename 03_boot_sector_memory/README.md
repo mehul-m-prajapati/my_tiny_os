@@ -1,33 +1,60 @@
-# Tiny OS
+### Memory Org
 
-Welcome to **Tiny OS**, a lightweight operating system designed for learning and experimentation. This project aims to provide a minimalistic environment to help you understand the fundamentals of operating systems and low-level programming.
+Please open page 14 [of this document](
+http://www.cs.bham.ac.uk/~exr/lectures/opsys/10_11/lectures/os-dev.pdf)<sup>1</sup>
+and look at the figure with the memory layout.
 
-## Features
+The only goal of this lesson is to learn where the boot sector is stored
+The BIOS places it at `0x7C00`.
+We want to print an X on screen. We will try 4 different strategies
+and see which ones work and why.
 
-- **Lightweight Architecture**: Designed to run efficiently on limited resources.
-- **Modular Design**: Easily extendable with additional modules and functionalities.
-- **Kernel Functionality**: Basic process management, memory management, and scheduling.
-- **File System Support**: Simple file operations for managing files and directories.
-- **Interactive Shell**: A basic command-line interface for user interaction.
+**Open the file `sector_memory.asm`**
 
-## Getting Started
-
-### Prerequisites
-
-- [GCC](https://gcc.gnu.org/) (GNU Compiler Collection)
-- [QEMU](https://www.qemu.org/) (for emulation)
-- A basic understanding of C programming and computer architecture
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/mehul-m-prajapati/my_tiny_os
-cd my_tiny_os
+First, we will define the X as data, with a label:
+```nasm
+the_secret:
+    db "X"
 ```
 
-### Contributing
-Contributions are welcome! Please fork the repository and submit a pull request for any improvements or features.
+Then we will try to access `the_secret` in many different ways:
 
-### Acknowledgments
-- [os tut](https://github.com/cfenollosa/os-tutorial/)
+1. `mov al, the_secret`
+2. `mov al, [the_secret]`
+3. `mov al, the_secret + 0x7C00`
+4. `mov al, 2d + 0x7C00`, where `2d` is the actual position of the 'X' byte in the binary
+
+Take a look at the code and read the comments.
+
+Compile and run the code. You should see a string similar to `1[2¢3X4X`, where
+the bytes following 1 and 2 are just random garbage.
+
+If you add or remove instructions, remember to compute the new offset of the X
+by counting the bytes, and replace `0x2d` with the new one.
+
+Please don't continue onto the next section unless you have 100% understood
+the boot sector offset and memory addressing.
+
+
+The global offset
+-----------------
+
+Now, since offsetting `0x7c00` everywhere is very inconvenient, assemblers let
+us define a "global offset" for every memory location, with the `org` command:
+
+```nasm
+[org 0x7c00]
+```
+
+Go ahead and **open `memory_org.asm`** and you will see the canonical
+way to print data with the boot sector, which is now attempt 2. Compile the code
+and run it, and you will see how the `org` command affects each previous solution.
+
+Read the comments for a full explanation of the changes with and without `org`
+
+-----
+
+```
+$ nasm -f bin ./sector_memory.asm -o ./sector_memory.bin
+$ nasm -f bin ./memory_org.asm -o memory_org.bin
+```
