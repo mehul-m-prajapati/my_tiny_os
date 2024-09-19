@@ -1,28 +1,33 @@
-## Steps
+# Tiny OS
 
-### Environ
-- Start ubuntu 22.04 on virtual box 
-- Install nasm and qemu
-```
- sudo apt install nasm
- sudo apt install qemu
-```
-- Simplest boot sector ever
-```
-$ vim boot_sector.asm
-; Infinite loop (e9 fd ff)
-loop:
-    jmp loop 
+Welcome to **Tiny OS**, a lightweight operating system designed for learning and experimentation. This project aims to provide a minimalistic environment to help you understand the fundamentals of operating systems and low-level programming.
 
-; Fill with 510 zeros minus the size of the previous code
-times 510-($-$$) db 0
-; Magic number
-dw 0xaa55  
-```
-- Compile and Run
-```
-$ nasm -f bin boot_sector.asm -o boot_sector.bin
-$ qemu-system-x86_64 ./boot_sector.bin 
-```
-<img src="qemu_boot.png" width="700" height="400">
+## Features
 
+- **Lightweight Architecture**: Designed to run efficiently on limited resources.
+- **Modular Design**: Easily extendable with additional modules and functionalities.
+- **Kernel Functionality**: Basic process management, memory management, and scheduling.
+- **File System Support**: Simple file operations for managing files and directories.
+- **Interactive Shell**: A basic command-line interface for user interaction.
+
+## Getting Started
+
+### Prerequisites
+
+- [GCC](https://gcc.gnu.org/) (GNU Compiler Collection)
+- [QEMU](https://www.qemu.org/) (for emulation)
+- A basic understanding of C programming and computer architecture
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mehul-m-prajapati/my_tiny_os
+   cd my_tiny_os
+   ```
+
+### Contributing
+Contributions are welcome! Please fork the repository and submit a pull request for any improvements or features.
+
+### Acknowledgments
+- (OS Tutorial)[https://github.com/cfenollosa/os-tutorial/]
