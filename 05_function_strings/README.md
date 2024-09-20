@@ -102,21 +102,21 @@ Printing hex values
 -------------------
 
 In the next lesson we will start reading from disk, so we need some way
-to make sure that we are reading the correct data. File `boot_sect_print_hex.asm`
-extends `boot_sect_print.asm` to print hex bytes, not just ASCII chars.
+to make sure that we are reading the correct data. File `print_hex.asm`
+extends `print_hex.asm` to print hex bytes, not just ASCII chars.
 
 
 Code! 
 -----
 
-Let's jump to the code. File `boot_sect_print.asm` is the subroutine which will
+Let's jump to the code. File `print_main.asm` is the subroutine which will
 get `%include`d in the main file. It uses a loop to print bytes on screen.
 It also includes a function to print a newline. The familiar `'\n'` is
 actually two bytes, the newline char `0x0A` and a carriage return `0x0D`. Please
 experiment by removing the carriage return char and see its effect.
 
-As stated above, `boot_sect_print_hex.asm` allows for printing of bytes.
+As stated above, `print_hex.asm` allows for printing of bytes.
 
-The main file `boot_sect_main.asm` loads a couple strings and bytes,
+The main file `print_main.asm` loads a couple strings and bytes,
 calls `print` and `print_hex` and hangs. If you understood
 the previous sections, it's quite straightforward.
