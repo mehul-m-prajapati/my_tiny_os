@@ -18,8 +18,8 @@
 
     jmp $
 
-%include "../05-functions-strings/print_str.asm"
-%include "../05-functions-strings/print_hex.asm"
+%include "../05_function_strings/print_str.asm"
+%include "../05_function_strings/print_hex.asm"
 %include "boot_disk.asm"
 
 ; Magic number
