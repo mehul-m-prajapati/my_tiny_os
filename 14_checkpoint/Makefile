@@ -33,12 +33,21 @@ debug: os-image.bin kernel.elf
 # Generic rules for wildcards
 # To make an object, always compile from its .c
 %.o: %.c ${HEADERS}
+	@echo "\n---------------------------------------------------------"
+	@echo "----- compiling source file: $< to obj "
+	@echo "-----------------------------------------------------------"
 	${CC} ${CFLAGS} -ffreestanding -c $< -o $@
 
 %.o: %.asm
+	@echo "\n---------------------------------------------------------"
+	@echo "----- compiling asm file: $< to obj "
+	@echo "-----------------------------------------------------------"
 	nasm $< -f elf -o $@
 
 %.bin: %.asm
+	@echo "\n---------------------------------------------------------"
+	@echo "----- compiling asm file $< to bin "
+	@echo "-----------------------------------------------------------"
 	nasm $< -f bin -o $@
 
 clean:
