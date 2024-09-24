@@ -1,7 +1,3 @@
-*Concepts you may want to Google beforehand: CPU timer, keyboard interrupts, scancode*
-
-**Goal: Implement our first IRQ handlers: the CPU timer and the keyboard**
-
 Everything is now ready to test our hardware interrupts.
 
 Timer
